@@ -1,7 +1,7 @@
 package com.example.bank.Controllers;
 
-import com.example.bank.Model.CustomerTransactionRequest;
-import com.example.bank.Model.CustomerTransactionResponse;
+import com.example.bank.Model.http.CustomerTransactionRequest;
+import com.example.bank.Model.http.CustomerTransactionResponse;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
