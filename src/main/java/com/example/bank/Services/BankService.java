@@ -5,6 +5,7 @@ import com.example.bank.Model.Account.AccountStatus;
 import com.example.bank.Model.Account.Customer;
 import com.example.bank.Model.http.AccountCreateResponse;
 import com.example.bank.Model.http.NewAccountCreateRequest;
+import com.example.bank.Model.http.ResetPinRequest;
 import com.example.bank.Repository.AccountRepository;
 import com.example.bank.Repository.CustomerRepository;
 import lombok.AllArgsConstructor;
@@ -51,5 +52,34 @@ public class BankService {
                 .account(newAccount)
                 .build();
 
+    }
+
+    public String resetPin(ResetPinRequest data){
+
+        Long accountNumber = data.getAccountNumber();
+        Long oldPin = data.getOldPin();
+        Long newPin = data.getNewPin();
+
+        Account account = accountRepository.getAccountByAccountNumber(accountNumber);
+        if(account == null){
+            return "Failed: The account does not exist.";
+        }
+
+
+
+
+        if(account.getPin() != Long.parseLong(String.valueOf(oldPin))){
+            return "Failed: Incorrect PIN.";
+        }
+
+        try{
+            accountRepository.updateAccountPin(accountNumber, newPin);
+        }
+        catch (Exception e){
+            System.out.println(e);
+            return "Failed: Server Error.";
+        }
+
+        return "Pin reset successfully.";
     }
 }

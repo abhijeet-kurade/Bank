@@ -1,13 +1,11 @@
 package com.example.bank.Controllers;
 
-import com.example.bank.Model.Account.Account;
-import com.example.bank.Model.Account.Customer;
 import com.example.bank.Model.http.AccountCreateResponse;
 import com.example.bank.Model.http.NewAccountCreateRequest;
 import com.example.bank.Model.http.NewAccountCreateResponse;
+import com.example.bank.Model.http.ResetPinRequest;
 import com.example.bank.Services.BankService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +27,11 @@ public class BankController {
                 .accountNumber(account.getAccount()==null ? null : account.getAccount().getAccountNumber())
                 .pin(account.getAccount()==null ? null : account.getAccount().getPin())
                 .build();
+    }
+
+    @PostMapping(path = "reset-pin")
+    public String resetPin(@RequestBody ResetPinRequest data){
+        return bankService.resetPin(data);
     }
 
 }
