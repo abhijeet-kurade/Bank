@@ -39,5 +39,6 @@ public class Transaction {
     LocalDateTime timestamp;
     TransactionType type;
     TransactionStatus status;
-    int amount;
+    Long amount;
+    String message;
 }

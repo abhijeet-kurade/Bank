@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 @Builder
-public class CustomerTransactionResponse {
-    int responseCode;
+public class TransactionResponse {
+    Long responseCode;
     String message;
-    int currentAmount;
+    Long currentAmount;
 }

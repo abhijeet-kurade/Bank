@@ -1,12 +1,17 @@
 package com.example.bank.Controllers;
 
-import com.example.bank.Model.http.CustomerTransactionRequest;
-import com.example.bank.Model.http.CustomerTransactionResponse;
+import com.example.bank.Model.http.TransactionRequest;
+import com.example.bank.Model.http.TransactionResponse;
+import com.example.bank.Services.BankService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping(path = "/api/v1/customer")
 public class CustomerController {
+
+    private final BankService bankService;
 
     @GetMapping
     public String hello(){
@@ -15,14 +20,14 @@ public class CustomerController {
 
 
     @PostMapping(path = "withdraw")
-    public CustomerTransactionResponse withdrawMoney(@RequestBody CustomerTransactionRequest request){
+    public TransactionResponse withdrawMoney(@RequestBody TransactionRequest request){
 
-        System.out.println(request);
+        return bankService.withdrawMoney(request);
+    }
 
-        return CustomerTransactionResponse.builder()
-                .responseCode(request.getAmount())
-                .message("Transaction Succeeded")
-                .currentAmount(5000)
-                .build();
+    @PostMapping(path = "deposit")
+    public TransactionResponse depositMoney(@RequestBody TransactionRequest request){
+
+        return bankService.depositMoney(request);
     }
 }

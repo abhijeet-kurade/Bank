@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NewAccountCreateResponse {
-    int responseCode;
+    Integer responseCode;
     String message;
     Long accountNumber;
     Long pin;

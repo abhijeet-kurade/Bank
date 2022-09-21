@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @Builder
 public class AccountCreateResponse {
-    int reposeCode;
+    Integer reposeCode;
     String message;
     Account account;
 }

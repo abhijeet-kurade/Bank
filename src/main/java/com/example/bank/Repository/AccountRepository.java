@@ -19,4 +19,12 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
             nativeQuery = true
     )
     int updateAccountPin(Long accountNumber, Long pin);
+
+    @Modifying
+    @Transactional
+    @Query(
+            value = "update account set balance = ?2 where account_number = ?1",
+            nativeQuery = true
+    )
+    int updateAccountBalance(Long accountNumber, Long balance);
 }
